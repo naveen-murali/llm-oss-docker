@@ -1,0 +1,43 @@
+# docker-compose.yml (CPU)
+services:
+    qwen3-1.7b:
+        image: fiesta-ollama-qwen3-1.7b:1.0.0
+        container_name: fiesta-ollama-qwen3-1.7b
+        restart: unless-stopped
+        ports:
+            - "11434:11434"
+        # Your Dockerfile set OLLAMA_HOST=127.0.0.1 at build time.
+        # Override to 0.0.0.0 so the API is reachable from outside the container.
+        environment:
+            - OLLAMA_HOST=0.0.0.0
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "curl -sf http://127.0.0.1:11434/api/version >/dev/null || exit 1",
+                ]
+            interval: 30s
+            timeout: 5s
+            start_period: 10s
+            retries: 5
+
+    qwen3-4b:
+        image: fiesta-ollama-qwen3-4b:1.0.0
+        container_name: fiesta-ollama-qwen3-4b
+        restart: unless-stopped
+        ports:
+            - "11435:11434"
+        # Your Dockerfile set OLLAMA_HOST=127.0.0.1 at build time.
+        # Override to 0.0.0.0 so the API is reachable from outside the container.
+        environment:
+            - OLLAMA_HOST=0.0.0.0
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "curl -sf http://127.0.0.1:11434/api/version >/dev/null || exit 1",
+                ]
+            interval: 30s
+            timeout: 5s
+            start_period: 10s
+            retries: 5
