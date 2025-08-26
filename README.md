@@ -238,4 +238,4 @@ For issues and questions:
 
 ## License
 
-This project is part of the AI Fielsta research and development initiative.
+This project is part of the research and development initiative.
