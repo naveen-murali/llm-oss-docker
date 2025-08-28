@@ -19,13 +19,13 @@ docker login
 # Build & push both arches under the SAME tag
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  -t naveentag/aifiesta-ollama-qwen3:1.7b \
+  -t naveentag/ollama-qwen3:1.7b \
   --push .
 ```
 
 Verify platforms:
 ```bash
-docker buildx imagetools inspect docker.io/naveentag/aifiesta-ollama-qwen3:1.7b
+docker buildx imagetools inspect docker.io/naveentag/ollama-qwen3:1.7b
 # Expect: linux/amd64 and linux/arm64 entries
 ```
 
@@ -104,7 +104,7 @@ spec:
         - name: regcred
       containers:
         - name: api
-          image: naveentag/aifiesta-ollama-qwen3:1.7b
+          image: naveentag/ollama-qwen3:1.7b
           imagePullPolicy: IfNotPresent
           env:
             - name: OLLAMA_HOST
@@ -197,7 +197,7 @@ volumes:
 ```yaml
 initContainers:
   - name: seed-models
-    image: naveentag/aifiesta-ollama-qwen3:1.7b
+    image: naveentag/ollama-qwen3:1.7b
     command: ["/bin/sh","-lc"]
     args:
       - >
@@ -257,7 +257,7 @@ kubectl -n ollama get secret regcred -o jsonpath='{.data.\.dockerconfigjson}' | 
 
 # In-cluster pull test with the same secret:
 kubectl -n ollama run cred-check \
-  --image=naveentag/aifiesta-ollama-qwen3:1.7b \
+  --image=naveentag/ollama-qwen3:1.7b \
   --restart=Never \
   --image-pull-policy=Always \
   --overrides='{"spec":{"imagePullSecrets":[{"name":"regcred"}]}}'
