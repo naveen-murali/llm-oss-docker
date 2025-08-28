@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+  namespace: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: api
+          image: naveentag/aifiesta-ollama-qwen3:1.7b
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: OLLAMA_HOST
+              value: "0.0.0.0:11434"
+            - name: OLLAMA_KEEP_ALIVE
+              value: "-1"              # keep model hot in RAM
+            - name: OLLAMA_MAX_LOADED_MODELS
+              value: "1"               # only one model resident
+            - name: OLLAMA_NUM_PARALLEL
+              value: "1"               # 1 request at a time (raise later if CPU allows)
+          ports:
+            - containerPort: 11434
+          readinessProbe:
+            httpGet:
+              path: /api/version
+              port: 11434
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 12
+          livenessProbe:
+            httpGet:
+              path: /api/version
+              port: 11434
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 3
+          resources:
+            # Guaranteed QoS: requests = limits
+            requests:
+              cpu: "3800m"
+              memory: "7200Mi"
+            limits:
+              cpu: "3800m"
+              memory: "7200Mi"
