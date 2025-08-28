@@ -11,7 +11,7 @@ docker login -u naveentag
 echo "[Building models]..."
 
 # List whatever models you want to bake:
-MODELS=("qwen3:1.7b" "qwen3:4b" "deepseek-r1:1.5b" "llama3.2:3b" "gemma3n:e2b")
+MODELS=("qwen3:1.7b" "deepseek-r1:1.5b" "llama3.2:3b" "gemma3n:e2b")
 
 # list available models with number of models
 echo -e "\nAvailable models:"
@@ -23,7 +23,7 @@ echo ""
 # Loop through the models and build them
 for MODEL_REF in "${MODELS[@]}"; do
   # Replace : with - in the model name
-  TAG="${MODEL_REF/:/-}"   # "qwen3:4b" -> "qwen3-4b"
+  TAG="${MODEL_REF/:/-}"   # "qwen3:1.7b" -> "qwen3-1.7b"
   echo -e "\n>>> [Building] $TAG ..."
 
   # Build the model
