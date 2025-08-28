@@ -15,8 +15,15 @@ RUN set -eux; \
     done; \
     echo "Pulling model ${OLLAMA_MODEL}"; \
     /bin/ollama pull "${OLLAMA_MODEL}"; \
-    kill -TERM "$pid"; \
-    wait "$pid" || true
+    if kill -0 "$pid" 2>/dev/null; then \
+      kill -TERM "$pid" 2>/dev/null || true; \
+      wait "$pid" || true; \
+    fi
+    # or
+    # kill -TERM "$pid"; \
+    # wait "$pid" || true
+
+
 
 EXPOSE 11434
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=5 \
