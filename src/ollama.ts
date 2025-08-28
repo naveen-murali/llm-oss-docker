@@ -12,14 +12,22 @@ interface CustomChatReturn extends Omit<ChatResponse, "message"> {
 const ModelMaps = {
     "qwen3:1.7b": {
         model: "qwen3:1.7b",
-        host: "http://127.0.0.1:11434",
+        host: process.env.BASE_URL || "http://localhost:11434",
     },
-    "qwen3:4b": {
-        model: "qwen3:4b",
-        host: "http://127.0.0.1:11435",
+    "deepseek-r1:1.5b": {
+        model: "deepseek-r1:1.5b",
+        host: process.env.BASE_URL || "http://localhost:11434",
+    },
+    "llama3.2:3b": {
+        model: "llama3.2:3b",
+        host: process.env.BASE_URL || "http://localhost:11434",
+    },
+    "gemma3n:e2b": {
+        model: "gemma3n:e2b",
+        host: process.env.BASE_URL || "http://localhost:11434",
     },
 };
-const SelectedModel: keyof typeof ModelMaps = "qwen3:4b";
+const SelectedModel: keyof typeof ModelMaps = "gemma3n:e2b";
 
 class OllamaClient extends Ollama {
     constructor(config?: Partial<Config>) {
@@ -54,6 +62,7 @@ const ollamaClient = new OllamaClient({
 
 (async () => {
     console.time("customChat");
+    console.log("Model: ", ModelMaps[SelectedModel].model);
     const response = await ollamaClient.customChat({
         model: ModelMaps[SelectedModel].model,
         // model: "qwen3:1.7b", // 46s with `1.94GB / 3.74GB (RAM)` and `all Available CPU`
@@ -63,6 +72,11 @@ const ollamaClient = new OllamaClient({
             { role: "user", content: "What is the capital of France?" },
         ],
     });
-    console.log(JSON.stringify(response, null, 2));
+    console.log(response.message.nonReasoningContent);
     console.timeEnd("customChat");
 })();
+
+/**
+ * docker run command
+ * docker run -d --name llama3 -p 11434:11434 -e OLLAMA_HOST=0.0.0.0 -e OLLAMA_KEEP_ALIVE=-1 -e OLLAMA_MAX_LOADED_MODELS=1 -e OLLAMA_NUM_PARALLEL=1 naveentag/fiesta-ai:llama3.2-3b
+ */
