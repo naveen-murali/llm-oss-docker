@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "ollama": "bun run src/ollama.ts"
+    "ollama": "bun run src/ollama.ts",
+    "analysis": "bun run src/index.ts"
   },
   "dependencies": {
     "@lmstudio/sdk": "^1.5.0",
