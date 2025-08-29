@@ -86,5 +86,12 @@ export class OllamaClient extends Ollama {
 
 /**
  * docker run command
- * docker run -d --name llama3 -p 11434:11434 -e OLLAMA_HOST=0.0.0.0 -e OLLAMA_KEEP_ALIVE=-1 -e OLLAMA_MAX_LOADED_MODELS=1 -e OLLAMA_NUM_PARALLEL=1 naveentag/fiesta-ai:llama3.2-3b
+ * docker run -d \
+ *  --name llama3 \
+ *  -p 11434:11434 \
+ *  -e OLLAMA_HOST=0.0.0.0 \
+ *  -e OLLAMA_KEEP_ALIVE=-1 \
+ *  -e OLLAMA_MAX_LOADED_MODELS=1 \
+ *  -e OLLAMA_NUM_PARALLEL=1 \
+ *  naveentag/fiesta-ai:llama3.2-3b
  */

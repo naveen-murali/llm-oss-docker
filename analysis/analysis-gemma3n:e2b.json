@@ -4,79 +4,79 @@
     "memory": "16GB"
   },
   "totalPrompts": 10,
-  "totalTimeTakenInSeconds": 270.718,
-  "averageTimeTakenInSeconds": 27.07,
-  "model": "qwen3:1.7b",
+  "totalTimeTakenInSeconds": 201.28,
+  "averageTimeTakenInSeconds": 20.13,
+  "model": "gemma3n:e2b",
   "promptResponse": [
     {
       "order": 1,
       "prompt": "Solve this complex mathematical problem step by step: Given a 3D matrix A with eigenvalues λ1, λ2, λ3, prove that det(A) = λ1 × λ2 × λ3 using matrix diagonalization and properties of determinants.",
       "expectedModel": "gpt-5o",
       "responseModel": "gpt-5o",
-      "timeTakenInSeconds": 27.459
+      "timeTakenInSeconds": 24.222
     },
     {
       "order": 2,
       "prompt": "Analyze the ethical implications of autonomous vehicles making split-second decisions in accident scenarios. Consider multiple stakeholders, legal frameworks, and moral philosophy principles.",
       "expectedModel": "gpt-5o",
       "responseModel": "gpt-5o",
-      "timeTakenInSeconds": 20.127
+      "timeTakenInSeconds": 19.634
     },
     {
       "order": 3,
       "prompt": "Design a distributed system architecture for a global e-commerce platform that can handle 1 million concurrent users with 99.99% uptime. Include fault tolerance, scalability, and security considerations.",
       "expectedModel": "gpt-5o",
-      "responseModel": "deepseek-v3.1",
-      "timeTakenInSeconds": 20.632
+      "responseModel": "gpt-5o",
+      "timeTakenInSeconds": 19.862
     },
     {
       "order": 4,
       "prompt": "Create a comprehensive algorithm for natural language understanding that can parse ambiguous sentences, resolve references, and extract semantic meaning across multiple languages.",
       "expectedModel": "gpt-5o",
-      "responseModel": "deepseek-v3.1",
-      "timeTakenInSeconds": 28.935
+      "responseModel": "gpt-5o",
+      "timeTakenInSeconds": 19.636
     },
     {
       "order": 5,
       "prompt": "Develop a machine learning model that can predict stock market trends by analyzing multiple data sources including news sentiment, technical indicators, and macroeconomic factors.",
       "expectedModel": "gpt-5o",
       "responseModel": "gpt-5o",
-      "timeTakenInSeconds": 29.324
+      "timeTakenInSeconds": 19.657
     },
     {
       "order": 6,
       "prompt": "Analyze this 50-page research paper on climate change and provide a comprehensive summary with key findings, methodology critique, and implications for policy makers.",
       "expectedModel": "claude-sonnet-4",
-      "responseModel": "claude-sonnet-4",
-      "timeTakenInSeconds": 36.142
+      "responseModel": "gpt-5o",
+      "timeTakenInSeconds": 19.648
     },
     {
       "order": 7,
       "prompt": "Review this 1000-line codebase and identify architectural patterns, potential bugs, performance bottlenecks, and suggest refactoring improvements.",
       "expectedModel": "claude-sonnet-4",
       "responseModel": "gpt-5o",
-      "timeTakenInSeconds": 44.277
+      "timeTakenInSeconds": 19.724
     },
     {
       "order": 8,
       "prompt": "Examine this legal contract and highlight potential issues, ambiguous clauses, missing protections, and areas that need clarification or modification.",
       "expectedModel": "claude-sonnet-4",
-      "responseModel": "deepseek-v3.1",
-      "timeTakenInSeconds": 34.403
+      "responseModel": "gpt-5o",
+      "timeTakenInSeconds": 19.475
     },
     {
       "order": 9,
       "prompt": "Process this large dataset of customer feedback and create detailed insights about product satisfaction, common complaints, and actionable recommendations for improvement.",
       "expectedModel": "claude-sonnet-4",
-      "responseModel": "deepseek-v3.1",
-      "timeTakenInSeconds": 1.086
+      "responseModel": "claude-sonnet-4",
+      "timeTakenInSeconds": 19.719
     },
     {
       "order": 10,
       "prompt": "Analyze this historical document collection and identify patterns, connections, and insights that could inform current decision-making processes.",
       "expectedModel": "claude-sonnet-4",
-      "responseModel": "deepseek-v3.1",
-      "timeTakenInSeconds": 28.329
+      "responseModel": "claude-sonnet-4",
+      "timeTakenInSeconds": 19.701
     }
   ]
 }

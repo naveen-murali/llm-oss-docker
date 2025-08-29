@@ -23,12 +23,13 @@ interface Analysis {
 }
 
 const generateAnalysis = async (model: Models) => {
+    const totalPrompts = 10;
     const analysis: Analysis = {
         systemConfig: {
-            cpu: "8GB",
+            cpu: "8",
             memory: "16GB",
         },
-        totalPrompts: testPrompts.length,
+        totalPrompts,
         totalTimeTakenInSeconds: 0,
         averageTimeTakenInSeconds: 0,
         model: model,
@@ -40,7 +41,7 @@ const generateAnalysis = async (model: Models) => {
     const ollamaClient = new OllamaClient({ model });
 
     console.log(`Testing ${testPrompts.length} prompts...`);
-    for await (const testPrompt of testPrompts.slice(0, 10)) {
+    for await (const testPrompt of testPrompts.slice(0, totalPrompts)) {
         const promptOrder = ++index;
 
         console.log(`\nTesting prompt number: ${promptOrder}`);
@@ -72,9 +73,13 @@ const generateAnalysis = async (model: Models) => {
         });
     }
 
-    analysis.totalTimeTakenInSeconds = (Date.now() - startTime) / 1000;
-    analysis.averageTimeTakenInSeconds =
-        analysis.totalTimeTakenInSeconds / analysis.totalPrompts;
+    analysis.totalTimeTakenInSeconds = +(
+        (Date.now() - startTime) /
+        1000
+    ).toFixed(2);
+    analysis.averageTimeTakenInSeconds = +(
+        analysis.totalTimeTakenInSeconds / analysis.totalPrompts
+    ).toFixed(2);
 
     console.log(
         `Total time taken: ${analysis.totalTimeTakenInSeconds} seconds\n` +
@@ -88,7 +93,7 @@ const generateAnalysis = async (model: Models) => {
 };
 
 (async () => {
-    const model: Models = "deepseek-r1:1.5b";
+    const model: Models = "llama3.2:3b";
     console.log(`Generating analysis for ${model}...`);
     await generateAnalysis(model);
 })();
