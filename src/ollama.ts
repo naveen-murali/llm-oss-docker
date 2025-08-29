@@ -11,7 +11,9 @@ export type Models =
     | "qwen3:1.7b"
     | "deepseek-r1:1.5b"
     | "llama3.2:3b"
-    | "gemma3n:e2b";
+    | "llama3.2:1b"
+    | "gemma3n:e2b"
+    | "gpt-oss:20b";
 
 // Just for testing, you can change the model here
 const ModelMaps: Record<Models, { model: Models; host: string }> = {
@@ -27,8 +29,16 @@ const ModelMaps: Record<Models, { model: Models; host: string }> = {
         model: "llama3.2:3b",
         host: process.env.BASE_URL || "http://localhost:11434",
     },
+    "llama3.2:1b": {
+        model: "llama3.2:1b",
+        host: process.env.BASE_URL || "http://localhost:11434",
+    },
     "gemma3n:e2b": {
         model: "gemma3n:e2b",
+        host: process.env.BASE_URL || "http://localhost:11434",
+    },
+    "gpt-oss:20b": {
+        model: "gpt-oss:20b",
         host: process.env.BASE_URL || "http://localhost:11434",
     },
 };
@@ -85,13 +95,13 @@ export class OllamaClient extends Ollama {
 // };
 
 /**
- * docker run command
- * docker run -d \
- *  --name llama3 \
- *  -p 11434:11434 \
- *  -e OLLAMA_HOST=0.0.0.0 \
- *  -e OLLAMA_KEEP_ALIVE=-1 \
- *  -e OLLAMA_MAX_LOADED_MODELS=1 \
- *  -e OLLAMA_NUM_PARALLEL=1 \
- *  naveentag/fiesta-ai:llama3.2-3b
+ docker run command
+ docker run -d \
+  --name qwen3 \
+  -p 11434:11434 \
+  -e OLLAMA_HOST=0.0.0.0 \
+  -e OLLAMA_KEEP_ALIVE=-1 \
+  -e OLLAMA_MAX_LOADED_MODELS=1 \
+  -e OLLAMA_NUM_PARALLEL=1 \
+  naveentag/fiesta-ai:qwen3-1.7b
  */

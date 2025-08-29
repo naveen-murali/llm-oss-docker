@@ -93,7 +93,7 @@ const generateAnalysis = async (model: Models) => {
 };
 
 (async () => {
-    const model: Models = "llama3.2:3b";
+    const model: Models = "qwen3:1.7b";
     console.log(`Generating analysis for ${model}...`);
     await generateAnalysis(model);
 })();
